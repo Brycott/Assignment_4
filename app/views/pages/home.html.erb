@@ -1,4 +1,40 @@
+<!-- app/views/multiplication_tables/home.html.erb -->
+
 <div class="container pt-5">
-  <h1><i class="bi bi-gem" style="color: red;"></i> Coming soon</h1>
-  <p>Site is under construction</p>
+  <h1 class="text-center">Multiplication Table Generator</h1>
+
+  <%= form_with url: root_path, method: :get do |form| %>
+    <% if flash[:alert] %>
+      <p class="text-danger"><%= flash[:alert] %></p>
+    <% end %>
+
+    <p><%= form.label :size, "Table size" %></p>
+    <p class="w-100"><%= form.number_field :size, in: 1..12, required: true, class: 'wider-input', placeholder: 'Enter values between 1 and 12.' %></p>
+    <%= form.submit "Generate Table" , class: 'bg-primary text-white'%>
+  <% end %>
+
+  <% if @size %>
+    <table>
+      <thead>
+        <tr>
+          <h3><%= @size %> by <%= @size %> Multiplication Table</h3>
+        </tr>
+      </thead>
+      <tbody>
+        <% (1..@size).each do |i| %>
+          <tr>
+            <% (1..@size).each do |j| %>
+              <% if i == 1 || j == 1 %>
+                <td class="pe-5 text-end first-row-column"><%= i * j %></td>
+              <% else %>
+                <td class="pe-5 text-end"><%= i * j %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <td>Nothing to display, submit a table size (between 1 and 12) first.</td>
+  <% end %>
 </div>

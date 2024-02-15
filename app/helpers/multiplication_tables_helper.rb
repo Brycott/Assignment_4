@@ -1,0 +1,2 @@
+module MultiplicationTablesHelper
+end

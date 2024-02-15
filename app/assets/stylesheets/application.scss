@@ -13,5 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.first-row-column {
+  font-weight: bold; /* Make the text in the first row and column bold */
+  background-color: #000000; /* Add a background color to differentiate */
+  color: white;
+}
 
- @import "bootstrap";
+.wider-input {
+  width: 700px;
+}
+
+@import "bootstrap";
